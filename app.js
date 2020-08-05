@@ -17,8 +17,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist/character-creator')));
-app.use('/', express.static(path.join(__dirname, 'dist/character-creator')));
 app.use('/api', apiRouter);
+app.use('/*', express.static(path.join(__dirname, 'dist/character-creator')));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
