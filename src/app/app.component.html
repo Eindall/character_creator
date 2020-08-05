@@ -1,5 +1,5 @@
-<mat-toolbar fxLayout="row" fxLayoutGap="10px" color="primary">
-  <span [routerLink]="['home']">Character Creator</span>
+<mat-toolbar fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%" color="primary">
+  <span class="title" [routerLink]="['home']">Character Creator</span>
   <button mat-button [matMenuTriggerFor]="menu">Create</button>
   <mat-menu #menu="matMenu">
     <a mat-menu-item [routerLink]="['naheulbeuk/create']">Naheulbeuk</a>
