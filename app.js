@@ -4,7 +4,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 
-var apiRouter = require('./routes/route');
+var apiRouter = require('./routes/characters');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/character-creator', { promiseLibrary: require('bluebird') })
