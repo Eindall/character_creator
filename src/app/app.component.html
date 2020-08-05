@@ -1,9 +1,9 @@
 <mat-toolbar fxLayout="row" fxLayoutGap="10px" color="primary">
-  <span>Character Creator</span>
+  <span [routerLink]="['home']">Character Creator</span>
   <button mat-button [matMenuTriggerFor]="menu">Create</button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Naheulbeuk</button>
-    <button mat-menu-item>Pathfinder</button>
+    <a mat-menu-item [routerLink]="['naheulbeuk/create']">Naheulbeuk</a>
+    <a mat-menu-item [routerLink]="['pathfinder/create']">Pathfinder</a>
   </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>
