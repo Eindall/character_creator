@@ -1,1 +1,16 @@
-<p>home works!</p>
+<mat-card class="home" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="20px">
+  <mat-card-header>
+    <mat-card-title>Character sheets list</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card class="home-card" *ngFor="let character of characters">
+      <mat-card-header>
+        <mat-card-title>{{ character.name | titlecase }}</mat-card-title>
+        <mat-card-subtitle>{{ character.game | titlecase }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="home-description">
+        {{ character.race | titlecase }} | {{ character.class | titlecase }}
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
