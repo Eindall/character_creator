@@ -20,7 +20,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 /* POST new character */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
   Character.create(req.body, function(err, character) {
     if (err) return next(err);
     res.json(character);

@@ -4,7 +4,7 @@ var CharacterSchema = new mongoose.Schema({
     game: String,
     name: String,
     race: String,
-    rlass: String,
+    class: String,
     lvl: Number,
     gender: String,
     alignement: String,
