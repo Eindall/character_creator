@@ -11,6 +11,7 @@ import { PfSheetCreatorComponent } from './pathfinder/sheet-creator/sheet-creato
 import { PfSheetDetailsComponent } from './pathfinder/sheet-details/sheet-details.component';
 import { NhSheetCreatorComponent } from './naheulbeuk/sheet-creator/sheet-creator.component';
 import { NhSheetDetailsComponent } from './naheulbeuk/sheet-details/sheet-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,8 @@ import { NhSheetDetailsComponent } from './naheulbeuk/sheet-details/sheet-detail
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
     HttpClientModule
