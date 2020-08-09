@@ -169,8 +169,7 @@ export class NhSheetDetailsComponent implements OnInit {
 
   updateCharacter(): void {
     this.api.updateCharacter(this.id, this.characterForm.value).subscribe(res => {
-      const id = res['_id'];
-      this.router.navigate(['/naheulbeuk/details', id]);
+      this.router.navigate(['home']);
     }, (err) => {
       console.log(err);
     });
