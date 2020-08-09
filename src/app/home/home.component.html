@@ -2,13 +2,13 @@
   <mat-card-header>
     <mat-card-title>Character sheets list</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <mat-card class="home-card" *ngFor="let character of characters">
+  <mat-card-content fxLayout="row" fxLayoutGap="20px">
+    <mat-card class="home-card" *ngFor="let character of characters" fxLayout="column" fxLayoutAlign="space-around center" (click)="goToCharacter(character)">
       <mat-card-header>
-        <mat-card-title>{{ character.name | titlecase }}</mat-card-title>
-        <mat-card-subtitle>{{ character.game | titlecase }}</mat-card-subtitle>
+        <mat-card-title class="home-card-title">{{ character.name | titlecase }}</mat-card-title>
       </mat-card-header>
-      <mat-card-content class="home-description">
+      <img mat-card-image [src]="'../assets/' + character.game + '_logo.png'" alt="logo">
+      <mat-card-content class="home-card-description">
         {{ character.race | titlecase }} | {{ character.class | titlecase }}
       </mat-card-content>
     </mat-card>
