@@ -18,6 +18,7 @@ export class NhSheetDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getCharacter(this.route.snapshot.params['id']);
     this.characterForm = this.fb.group({
+      game: 'naheulbeuk',
       name: ['', Validators.required],
       gender: [''],
       lvl: [''],
@@ -54,6 +55,7 @@ export class NhSheetDetailsComponent implements OnInit {
     this.api.getCharacterById(id).subscribe(data => {
       this.id = data._id;
       this.characterForm.setValue({
+        game: 'naheulbeuk',
         name: data.name ? data.name : null,
         gender: data.gender ? data.gender : null,
         lvl: data.lvl ? data.lvl : null,

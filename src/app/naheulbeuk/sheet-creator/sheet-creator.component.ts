@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class NhSheetCreatorComponent implements OnInit {
 
   characterForm = this.fb.group({
+    game: ['naheulbeuk'],
     name: ['', Validators.required],
     gender: [''],
     lvl: [''],
