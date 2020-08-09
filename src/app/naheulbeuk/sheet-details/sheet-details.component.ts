@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmComponent } from 'src/app/modals/confirm/confirm.component';
 
 @Component({
   selector: 'app-sheet-details',
@@ -13,7 +15,7 @@ export class NhSheetDetailsComponent implements OnInit {
   id: string;
   characterForm: FormGroup;
 
-  constructor(private api: ApiService, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private api: ApiService, private router: Router, private route: ActivatedRoute, private fb: FormBuilder, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getCharacter(this.route.snapshot.params['id']);
@@ -172,6 +174,17 @@ export class NhSheetDetailsComponent implements OnInit {
       this.router.navigate(['home']);
     }, (err) => {
       console.log(err);
+    });
+  }
+
+  deleteConfirmation(): void {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '350px',
+      data: 'Are you sure you want to delete this character ?'
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) this.deleteCharacter();
     });
   }
 

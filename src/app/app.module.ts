@@ -12,6 +12,7 @@ import { PfSheetDetailsComponent } from './pathfinder/sheet-details/sheet-detail
 import { NhSheetCreatorComponent } from './naheulbeuk/sheet-creator/sheet-creator.component';
 import { NhSheetDetailsComponent } from './naheulbeuk/sheet-details/sheet-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmComponent } from './modals/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PfSheetCreatorComponent,
     PfSheetDetailsComponent,
     NhSheetCreatorComponent,
-    NhSheetDetailsComponent
+    NhSheetDetailsComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
