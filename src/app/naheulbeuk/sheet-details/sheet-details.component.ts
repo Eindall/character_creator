@@ -117,6 +117,11 @@ export class NhSheetDetailsComponent implements OnInit {
     });
   }
 
+  deleteSkill(index: number): void {
+    const skills = this.characterForm.get('skills') as FormArray;
+    skills.removeAt(index);
+  }
+
   createSpell(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
@@ -146,6 +151,11 @@ export class NhSheetDetailsComponent implements OnInit {
     });
   }
 
+  deleteSpell(index: number): void {
+    const spells = this.characterForm.get('spells') as FormArray;
+    spells.removeAt(index);
+  }
+
   createEquipment(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
@@ -167,6 +177,11 @@ export class NhSheetDetailsComponent implements OnInit {
       stats: equip.stats ? equip.stats : '',
       quantity: equip.quantity ? equip.quantity : ''
     })
+  }
+
+  deleteEquipment(index: number): void {
+    const equipment = this.characterForm.get('equipment') as FormArray;
+    equipment.removeAt(index);
   }
 
   updateCharacter(): void {

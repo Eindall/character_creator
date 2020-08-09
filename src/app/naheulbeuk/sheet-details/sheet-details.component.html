@@ -165,6 +165,7 @@
               <input matInput formControlName="name">
               <mat-hint>Roleplay action needed to validate the skill's usage</mat-hint>
             </mat-form-field>
+            <mat-icon fxFlexAlign="center" class="array-delete-row" (click)="deleteSkill(i)">clear</mat-icon>
           </div>
         </div>
         <button mat-fab color="accent" (click)="addSkill()"><mat-icon>add</mat-icon></button>
@@ -216,6 +217,7 @@
               <input matInput formControlName="word">
               <mat-hint>The incantation needed for the spell to launch</mat-hint>
             </mat-form-field>
+            <mat-icon fxFlexAlign="center" class="array-delete-row" (click)="deleteSpell(i)">clear</mat-icon>
           </div>
         </div>
         <button mat-fab color="accent" (click)="addSpell()"><mat-icon>add</mat-icon></button>
@@ -250,6 +252,7 @@
               <mat-label>Quantity</mat-label>
               <input matInput formControlName="quantity">
             </mat-form-field>
+            <mat-icon fxFlexAlign="center" class="array-delete-row" (click)="deleteEquipment(i)">clear</mat-icon>
           </div>
         </div>
         <button mat-fab color="accent" (click)="addEquipment()"><mat-icon>add</mat-icon></button>

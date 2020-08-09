@@ -64,6 +64,11 @@ export class NhSheetCreatorComponent implements OnInit {
     skills.push(this.createSkill());
   }
 
+  deleteSkill(index: number): void {
+    const skills = this.characterForm.get('skills') as FormArray;
+    skills.removeAt(index);
+  }
+
   createSpell(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
@@ -81,6 +86,11 @@ export class NhSheetCreatorComponent implements OnInit {
     spells.push(this.createSpell());
   }
 
+  deleteSpell(index: number): void {
+    const spells = this.characterForm.get('spells') as FormArray;
+    spells.removeAt(index);
+  }
+
   createEquipment(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
@@ -93,6 +103,11 @@ export class NhSheetCreatorComponent implements OnInit {
   addEquipment(): void {
     const equip = this.characterForm.get('equipment') as FormArray;
     equip.push(this.createEquipment());
+  }
+
+  deleteEquipment(index: number): void {
+    const equipment = this.characterForm.get('equipment') as FormArray;
+    equipment.removeAt(index);
   }
 
   onSubmit(): void {
