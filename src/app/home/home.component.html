@@ -1,6 +1,7 @@
 <mat-card class="home" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="20px">
   <mat-card-header>
     <mat-card-title>Character sheets list</mat-card-title>
+    <mat-card-subtitle>Only Naheulbeuk implemented yet, more to come</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content fxLayout="row" fxLayoutGap="20px">
     <mat-card class="home-card" *ngFor="let character of characters" fxLayout="column" fxLayoutAlign="space-around center" (click)="goToCharacter(character)">
