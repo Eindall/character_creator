@@ -83,7 +83,6 @@ export class NhSheetDetailsComponent implements OnInit {
           equipment.push(this.setEquipment(equip));
         });
       }
-      console.log(this.characterForm);
     });
   }
 
@@ -167,7 +166,7 @@ export class NhSheetDetailsComponent implements OnInit {
   }
 
   updateCharacter(): void {
-    this.api.updateCharacter(this.id, this.characterForm).subscribe(res => {
+    this.api.updateCharacter(this.id, this.characterForm.value).subscribe(res => {
       const id = res['_id'];
       this.router.navigate(['/naheulbeuk/details', id]);
     }, (err) => {
