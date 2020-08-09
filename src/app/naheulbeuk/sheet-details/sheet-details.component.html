@@ -1,1 +1,263 @@
-<p>Work in Progress</p>
+<mat-card class="card" fxLayout="column">
+  <mat-card-title class="card-title">Naheulbeuk sheet</mat-card-title>
+  <mat-card-content fxLayout="column" fxLayoutGap="20px">
+    <mat-accordion [formGroup]="characterForm">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Basic infos
+          </mat-panel-title>
+          <mat-panel-description>
+            Every infos about your character such as his name, gender, etc...
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div fxLayout="row wrap" fxLayoutGap="1%">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+            <mat-hint>Your character's name</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Gender</mat-label>
+            <input matInput formControlName="gender">
+            <mat-hint>Your character's gender</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Race</mat-label>
+            <input matInput formControlName="race">
+            <mat-hint>Your character's race</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Job</mat-label>
+            <input matInput formControlName="class">
+            <mat-hint>Your character's job</mat-hint>
+          </mat-form-field>
+          <ng-container formGroupName="description">
+            <mat-form-field appearance="outline">
+              <mat-label>Eyes</mat-label>
+              <input matInput formControlName="eyes">
+              <mat-hint>Eyes color</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Hair</mat-label>
+              <input matInput formControlName="hair">
+              <mat-hint>Hair color</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Weight</mat-label>
+              <input matInput formControlName="weight">
+              <mat-hint>Your character's weight</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Height</mat-label>
+              <input matInput formControlName="height">
+              <mat-hint>Your character's height</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Age</mat-label>
+              <input matInput formControlName="age">
+              <mat-hint>Your character's age</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="short_description"></textarea>
+              <mat-hint>A short description about your character</mat-hint>
+            </mat-form-field>
+          </ng-container>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Attributes
+          </mat-panel-title>
+          <mat-panel-description>
+            Every stat and attributes for your character
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div fxLayout="row wrap" fxLayoutGap="1%" formGroupName="attributes">
+          <mat-form-field appearance="outline">
+            <mat-label>Courage</mat-label>
+            <input matInput formControlName="courage">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Intelligence</mat-label>
+            <input matInput formControlName="intelligence">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Charisma</mat-label>
+            <input matInput formControlName="charisma">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Dexterity</mat-label>
+            <input matInput formControlName="dexterity">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Strengh</mat-label>
+            <input matInput formControlName="strengh">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Vital energy</mat-label>
+            <input matInput formControlName="ev">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Astral energy</mat-label>
+            <input matInput formControlName="ea">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Fate points</mat-label>
+            <input matInput formControlName="destin">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Attack</mat-label>
+            <input matInput formControlName="attack">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Parade</mat-label>
+            <input matInput formControlName="parade">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Magic resistance</mat-label>
+            <input matInput formControlName="magic_res">
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Skills
+          </mat-panel-title>
+          <mat-panel-description>
+            List of the skills your character can use
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div formArrayName="skills" *ngFor="let skill of characterForm.get('skills')['controls']; let i = index;">
+          <div class="array-margin" fxLayout="row wrap" fxLayoutGap="1%" [formGroupName]="i">
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name">
+              <mat-hint>Name of the skill</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <input matInput formControlName="desc">
+              <mat-hint>Short description of the skill</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Usage</mat-label>
+              <input matInput formControlName="usage">
+              <mat-hint>How to use the skill in game</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Catch up</mat-label>
+              <input matInput formControlName="catch_up">
+              <mat-hint>Remedy to the skill effect</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Requirements</mat-label>
+              <input matInput formControlName="requirements">
+              <mat-hint>Requirements or restrictions of the skill</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Roleplay</mat-label>
+              <input matInput formControlName="name">
+              <mat-hint>Roleplay action needed to validate the skill's usage</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+        <button mat-fab color="accent" (click)="addSkill()"><mat-icon>add</mat-icon></button>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Spells
+          </mat-panel-title>
+          <mat-panel-description>
+            List of the spells your character can use
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div formArrayName="spells" *ngFor="let spell of characterForm.get('spells')['controls']; let i = index;">
+          <div class="array-margin" fxLayout="row wrap" fxLayoutGap="1%" [formGroupName]="i">
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name">
+              <mat-hint>Name of the spell</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <input matInput formControlName="desc">
+              <mat-hint>Short description of the spell</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Casting time</mat-label>
+              <input matInput formControlName="casting_time">
+              <mat-hint>The time needed for the spell to prepair</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Cost</mat-label>
+              <input matInput formControlName="cost">
+              <mat-hint>The spell's cost</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Test</mat-label>
+              <input matInput formControlName="test">
+              <mat-hint>Test needed to successfully launch the spell</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Range</mat-label>
+              <input matInput formControlName="range">
+              <mat-hint>The range of the spell</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Word</mat-label>
+              <input matInput formControlName="word">
+              <mat-hint>The incantation needed for the spell to launch</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+        <button mat-fab color="accent" (click)="addSpell()"><mat-icon>add</mat-icon></button>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Equipment
+          </mat-panel-title>
+          <mat-panel-description>
+            List of every equipment your character have
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div formArrayName="equipment" *ngFor="let equip of characterForm.get('equipment')['controls']; let i = index;">
+          <div class="array-margin" fxLayout="row wrap" fxLayoutGap="1%" [formGroupName]="i">
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name">
+              <mat-hint>Name of the item</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Type</mat-label>
+              <input matInput formControlName="type">
+              <mat-hint>Type of the item</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Stats</mat-label>
+              <input matInput formControlName="stats">
+              <mat-hint>The stats of the item</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Quantity</mat-label>
+              <input matInput formControlName="quantity">
+            </mat-form-field>
+          </div>
+        </div>
+        <button mat-fab color="accent" (click)="addEquipment()"><mat-icon>add</mat-icon></button>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <div fxLayout="row" fxLayoutGap="1%">
+      <button mat-flat-button color="accent" [disabled]="!characterForm.valid" (click)="updateCharacter()">Update Character</button>
+      <button mat-flat-button color="warn" (click)="deleteCharacter()">Delete Character</button>
+    </div>
+  </mat-card-content>
+</mat-card>

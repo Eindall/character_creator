@@ -8,7 +8,7 @@ var CharacterSchema = new mongoose.Schema({
     lvl: Number,
     gender: String,
     alignement: String,
-    attributes: Array,
+    attributes: Object,
     skills: Array,
     equipment: Array,
     spells: Array,

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/service/api.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-sheet-details',
@@ -7,9 +10,177 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NhSheetDetailsComponent implements OnInit {
 
-  constructor() { }
+  id: string;
+  characterForm: FormGroup;
+
+  constructor(private api: ApiService, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.getCharacter(this.route.snapshot.params['id']);
+    this.characterForm = this.fb.group({
+      name: ['', Validators.required],
+      gender: [''],
+      lvl: [''],
+      race: ['', Validators.required],
+      class: [''],
+      attributes: this.fb.group({
+        courage: ['',Validators.required],
+        intelligence: ['', Validators.required],
+        charisma: ['', Validators.required],
+        dexterity: ['', Validators.required],
+        strengh: ['', Validators.required],
+        ev: ['', Validators.required],
+        ea: [''],
+        destin: ['', Validators.required],
+        attack: ['', Validators.required],
+        parade: ['', Validators.required],
+        magic_res: ['', Validators.required]
+      }),
+      skills: this.fb.array([]),
+      spells: this.fb.array([]),
+      equipment: this.fb.array([]),
+      description: this.fb.group({
+        eyes: [''],
+        hair: [''],
+        weight: [''],
+        height: [''],
+        age: [''],
+        short_description: ['']
+      })
+    });
+  }
+
+  getCharacter(id): void {
+    this.api.getCharacterById(id).subscribe(data => {
+      this.id = data._id;
+      this.characterForm.setValue({
+        name: data.name ? data.name : null,
+        gender: data.gender ? data.gender : null,
+        lvl: data.lvl ? data.lvl : null,
+        race: data.race ? data.race : null,
+        class: data.class ? data.class : null,
+        attributes: data.attributes ? data.attributes  : null,
+        skills: [],
+        spells: [],
+        equipment: [],
+        description: data.description ? data.description : null
+      });
+      if (data.skills) {
+        data.skills.forEach((skill) => {
+          const skills = this.characterForm.get('skills') as FormArray;
+          skills.push(this.setSkill(skill));
+        });
+      }
+      if (data.spells) {
+        data.spells.forEach((spell) => {
+          const spells = this.characterForm.get('spells') as FormArray;
+          spells.push(this.setSpell(spell));
+        });
+      }
+      if (data.equipment) {
+        data.equipment.forEach((equip) => {
+          const equipment = this.characterForm.get('equipment') as FormArray;
+          equipment.push(this.setEquipment(equip));
+        });
+      }
+      console.log(this.characterForm);
+    });
+  }
+
+  createSkill(): FormGroup {
+    return this.fb.group({
+      name: ['', Validators.required],
+      desc: ['', Validators.required],
+      usage: '',
+      catch_up: '',
+      requirements: '',
+      roleplay: ''
+    });
+  }
+
+  addSkill(): void {
+    const skills = this.characterForm.get('skills') as FormArray;
+    skills.push(this.createSkill());
+  }
+
+  setSkill(skill): FormGroup {
+    return this.fb.group({
+      name: [skill.name, Validators.required],
+      desc: [skill.desc, Validators.required],
+      usage: skill.usage ? skill.usage : '',
+      catch_up: skill.catch_up ? skill.catch_up : '',
+      requirements: skill.requirements ? skill.requirements : '',
+      roleplay: skill.roleplay ? skill.roleplay : ''
+    });
+  }
+
+  createSpell(): FormGroup {
+    return this.fb.group({
+      name: ['', Validators.required],
+      desc: ['', Validators.required],
+      casting_time: '',
+      cost: '',
+      test: '',
+      range: '',
+      word: ''
+    });
+  }
+
+  addSpell(): void {
+    const spells = this.characterForm.get('spells') as FormArray;
+    spells.push(this.createSpell());
+  }
+
+  setSpell(spell): FormGroup {
+    return this.fb.group({
+      name: [spell.name, Validators.required],
+      desc: [spell.desc, Validators.required],
+      casting_time: spell.casting_time ? spell.casting_time : '',
+      cost: spell.cost ? spell.cost : '',
+      test: spell.test ? spell.test : '',
+      range: spell.range ? spell.range : '',
+      word: spell.word ? spell.word : ''
+    });
+  }
+
+  createEquipment(): FormGroup {
+    return this.fb.group({
+      name: ['', Validators.required],
+      type: ['', Validators.required],
+      stats: '',
+      quantity: ''
+    })
+  }
+
+  addEquipment(): void {
+    const equip = this.characterForm.get('equipment') as FormArray;
+    equip.push(this.createEquipment());
+  }
+
+  setEquipment(equip): FormGroup {
+    return this.fb.group({
+      name: [equip.name, Validators.required],
+      type: [equip.type, Validators.required],
+      stats: equip.stats ? equip.stats : '',
+      quantity: equip.quantity ? equip.quantity : ''
+    })
+  }
+
+  updateCharacter(): void {
+    this.api.updateCharacter(this.id, this.characterForm).subscribe(res => {
+      const id = res['_id'];
+      this.router.navigate(['/naheulbeuk/details', id]);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  deleteCharacter(): void {
+    this.api.deleteCharacter(this.id).subscribe(res => {
+      this.router.navigate(['home']);
+    }, (err) => {
+      console.log(err);
+    });
   }
 
 }
